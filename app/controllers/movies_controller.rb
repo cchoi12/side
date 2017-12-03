@@ -21,6 +21,20 @@ class MoviesController < ApplicationController
     end
   end
 
+  def new
+    @movie = Movie.new
+  end
+
+  def create
+    @movie = Movie.create!(movie_params)
+
+    if @movie.save!
+      redirect_to movie_path(@movie)
+    else
+      render 'new', notice: 'Breh, can\'t do that'
+    end
+  end
+
   private
 
   def movie_params
