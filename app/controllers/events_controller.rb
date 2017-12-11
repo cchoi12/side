@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_time, only: [:index]
-  before_action :set_event, only: %i[show edit update]
+  before_action :set_event, only: %i[show edit update destroy]
   before_action :set_events, only: [:index]
 
   def index
@@ -36,6 +36,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event.delete
+    redirect_to events_path
+  end
+
   private
 
   def event_params
@@ -51,6 +56,6 @@ class EventsController < ApplicationController
   end
 
   def set_events
-    @events = Event.all
+    @events = Event.upcoming
   end
 end

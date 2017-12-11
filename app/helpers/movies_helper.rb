@@ -8,6 +8,10 @@ module MoviesHelper
   end
 
   def format_date_and_timeago movie
-    "#{movie.release_date.strftime('%m/%d/%Y')}(#{time_ago_in_words movie.release_date})"
+    if movie.release_date.blank?
+      'Unknown'
+    else
+      "#{movie.release_date.strftime('%m/%d/%Y')}(#{time_ago_in_words movie.release_date})"
+    end
   end
 end

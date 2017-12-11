@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[show edit update]
+  before_action :set_movie, only: %i[show edit update destroy]
   before_action :set_movies, only: %i[index]
 
   def index
@@ -33,6 +33,11 @@ class MoviesController < ApplicationController
     else
       render 'new', notice: 'Breh, can\'t do that'
     end
+  end
+
+  def destroy
+    @movie.delete
+    redirect_to movies_path
   end
 
   private
