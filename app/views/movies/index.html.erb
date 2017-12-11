@@ -5,7 +5,9 @@
 <% @movies.each do |movie| %>
   <article>
     <header>
+      <%= movie_image_for movie %>
       <h2><%= link_to movie.title, movie %></h2>
+      <h3>Starring: <%= movie.cast %></h3>
     </header>
     <p><%= truncate(movie.description, length: 40, seperator: ' ') %></p>
     <table>
@@ -20,6 +22,10 @@
       <tr>
         <th>Release Date: </th>
         <td><%= format_date_and_timeago movie %></td>
+      </tr>
+      <tr>
+        <th>Duration: </th>
+        <td><%= movie.duration %></td>
       </tr>
     </table>
     <%= link_to 'Edit', edit_movie_path(movie) %>

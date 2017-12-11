@@ -1,4 +1,12 @@
 module MoviesHelper
+  def movie_image_for movie
+    if movie.image_file_name.blank?
+      image_tag 'http://via.placeholder.com/350x150'
+    else
+      image_tag movie.image_file_name
+    end
+  end
+
   def price_formatter movie
     if movie.flop?
       content_tag(:strong, 'Flop!')

@@ -1,5 +1,6 @@
 <article>
   <header>
+    <%= movie_image_for @movie %>
     <h2><%= link_to @movie.title, @movie %></h2>
   </header>
   <p><%= truncate(@movie.description, length: 40, seperator: ' ') %></p>
@@ -15,6 +16,18 @@
     <tr>
       <th>Release Date: </th>
       <td><%= format_date_and_timeago @movie %></td>
+    </tr>
+    <tr>
+      <th>Duration: </th>
+      <td><%= @movie.duration %></td>
+    </tr>
+    <tr>
+      <th>Cast: </th>
+      <td><%= @movie.cast %></td>
+    </tr>
+    <tr>
+      <th>Director: </th>
+      <td><%= @movie.director %></td>
     </tr>
   </table>
   <%= link_to 'Edit', edit_movie_path(@movie) %>

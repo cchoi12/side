@@ -1,5 +1,6 @@
 <article>
   <header>
+    <%= image_for @event %>
     <h2><%= @event.name %></h2>
   </header>
   <p><%= @event.description %></p>
@@ -15,6 +16,10 @@
     <tr>
       <th>Start Date: </th>
       <td><%= @event.starts_at %></td>
+    </tr>
+    <tr>
+      <th>Capacity</th>
+      <td><%= @event.capacity %></td>
     </tr>
   </table>
   <%= link_to 'Edit', edit_event_path(@event) %>
