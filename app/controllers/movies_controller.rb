@@ -51,6 +51,6 @@ class MoviesController < ApplicationController
   end
 
   def set_movies
-    @movies = Movie.all
+    @movies = Movie.released
   end
 end
