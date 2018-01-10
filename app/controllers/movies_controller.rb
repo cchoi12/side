@@ -2,6 +2,8 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[show edit update destroy]
   before_action :set_movies, only: %i[index]
 
+  layout 'movie_layout'
+
   def index
   end
 
