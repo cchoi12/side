@@ -1,33 +1,33 @@
-<h1><%= pluralize(@movies.size, 'Movie') %></h1>
-<br />
+<ul id="movies">
+  <% @movies.each do |movie| %>
+    <li>
+      <article class="movie">
+        <header>
+          <%= image_for(movie) %>
+          <h2><%= link_to movie.title, movie %> (<%= movie.released_on.year %>)</h2>
+          <h3><%= movie.cast %></h3>
+        </header>
+        <p>
+          <%= truncate(movie.description, length: 150, separator: ' ') %>
+        </p>
+        <table>
+          <tr>
+            <th>Rating</th>
+            <td><%= movie.rating %></td>
+          </tr>
+          <tr>
+            <th>Duration</th>
+            <td><%= movie.duration %></td>
+          </tr>
+          <tr>
+            <th>Total Gross</th>
+            <td><%= format_total_gross(movie) %></td>
+          </tr>
+        </table>
+        <footer>
+        </footer>
+      </article>
+    </li>
+  <% end %>
+</ul>
 
-<% @movies.each do |movie| %>
-  <article>
-    <header>
-      <%= movie_image_for movie %>
-      <h2><%= link_to movie.title, movie %></h2>
-      <h3>Starring: <%= movie.cast %></h3>
-    </header>
-    <p><%= truncate(movie.description, length: 40, seperator: ' ') %></p>
-    <table>
-      <tr>
-        <th>Rating:</th>
-        <td><%= movie.rating %></td>
-      </tr>
-      <tr>
-        <th>Total Gross: </th>
-        <td><%= price_formatter movie %></td>
-      </tr>
-      <tr>
-        <th>Release Date: </th>
-        <td><%= format_date_and_timeago movie %></td>
-      </tr>
-      <tr>
-        <th>Duration: </th>
-        <td><%= movie.duration %></td>
-      </tr>
-    </table>
-    <%= link_to 'Edit', edit_movie_path(movie) %>
-    <%= link_to 'Delete', movie_path(movie), method: :delete, data: {confirm: 'Are you sure about that?'} %>
-  </article>
-<% end %>

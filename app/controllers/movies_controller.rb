@@ -1,26 +1,20 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[show edit update destroy]
-  before_action :set_movies, only: %i[index]
-
-  layout 'movie_layout'
-
   def index
+    @movies = Movie.released
   end
 
   def show
+    @movie = Movie.find(params[:id])
   end
 
   def edit
+    @movie = Movie.find(params[:id])
   end
 
   def update
-    @movie.update!(movie_params)
-
-    if @movie.save
-      redirect_to movie_path(@movie)
-    else
-      render 'edit'
-    end
+    @movie = Movie.find(params[:id])
+    @movie.update(movie_params)
+    redirect_to @movie
   end
 
   def new
@@ -28,35 +22,21 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.create!(movie_params)
-
-    if @movie.save!
-      redirect_to movie_path(@movie)
-    else
-      render 'new', notice: 'Breh, can\'t do that'
-    end
+    @movie = Movie.new(movie_params)
+    @movie.save
+    redirect_to @movie
   end
 
   def destroy
-    @movie.delete
-    redirect_to movies_path
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect_to movies_url
   end
 
-  private
+private
 
   def movie_params
-    params.require(:movie).permit(:title, :rating, :total_gross,
-                                  :release_date, :description,
-                                  :image_file_name, :director, :cast,
-                                  :duration
-                                )
-  end
-
-  def set_movie
-    @movie = Movie.find(params[:id])
-  end
-
-  def set_movies
-    @movies = Movie.released
+    params.require(:movie).
+      permit(:title, :description, :rating, :released_on, :total_gross, :cast, :director, :duration, :image_file_name)
   end
 end
