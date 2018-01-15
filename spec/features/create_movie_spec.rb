@@ -19,7 +19,7 @@ describe "Creating a new movie" do
     fill_in "Image file name", with: "movie.png"
 
     click_button 'Create Movie'
-
+    expect(page).to have_text('movie successfully created')
     expect(current_path).to eq(movie_path(Movie.last))
 
     expect(page).to have_text('New Movie Title')
