@@ -10,6 +10,8 @@ class Movie < ApplicationRecord
   }
   validates :rating, inclusion: { in: %w(G PG PG-13 R NC-17) }
 
+  has_many :reviews, dependent: :destroy
+
   RATINGS = %w(G PG PG-13 R NC-17)
 
   def self.released
