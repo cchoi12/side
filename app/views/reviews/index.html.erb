@@ -1,0 +1,12 @@
+<header>
+  <h2>Reviews for <%= link_to "#{@movie.title.titleize}", @movie %></h2>
+</header>
+
+<% @reviews.each do |review| %>
+<ol>
+  <h4><%= review.name %></h4>
+  <p>"<em><%= review.comment %>"</em></p>
+  <p><%= review.stars %> stars</p>
+  <hr />
+</ol>
+<% end %>
