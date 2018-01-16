@@ -1,13 +1,3 @@
-
-/*
- * The Pragmatic Studio
- * http://pragmaticstudio.com
- * Copyright (c) 2011 The Pragmatic Studio
- *
- * Please don't use this exact layout and style
- * combination in your applications.
- */
-
 @import "colors";
 
 /* MOVIES */
@@ -190,7 +180,7 @@ ol#reviews {
   text-align: center;
   text-transform: uppercase;
   box-shadow: #ffc 0 0 4px;
-  
+
   &.notice {
     background-color: $flash-notice-color;
   }
