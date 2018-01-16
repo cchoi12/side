@@ -8,6 +8,10 @@
   <p>"<em><%= review.comment %>"</em></p>
   <p><%= review.stars %> stars</p>
   <p><%= review.created_at.strftime('%b %d, %Y') %></p>
+  <%= link_to delete_review_image, [@movie, review],
+                  id: "#{dom_id(review)}_delete",
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
   <hr />
 </ol>
 <% end %>
