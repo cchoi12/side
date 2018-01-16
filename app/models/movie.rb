@@ -31,10 +31,14 @@ class Movie < ApplicationRecord
   end
 
   def average_stars
-    reviews.average(:stars).to_i
+    reviews.average(:stars)
   end
 
   def flop?
     total_gross.blank? || total_gross < 50000000
+  end
+
+  def recent_reviews
+    reviews.order('created_at desc').limit(2)
   end
 end

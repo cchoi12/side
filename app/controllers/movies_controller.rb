@@ -1,18 +1,16 @@
 class MoviesController < ApplicationController
+  before_action :set_movie, only: %i[show edit update destroy]
   def index
     @movies = Movie.released
   end
 
   def show
-    @movie = Movie.find(params[:id])
   end
 
   def edit
-    @movie = Movie.find(params[:id])
   end
 
   def update
-    @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
       redirect_to @movie, notice: 'movie successfully updated'
     else
@@ -34,12 +32,14 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
     @movie.destroy
     redirect_to movies_url, alert: 'movie deleted'
   end
 
 private
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
 
   def movie_params
     params.require(:movie).
