@@ -7,5 +7,5 @@ class Review < ApplicationRecord
     message: "%{value} must be between 1 and 5"
   }
 
-  STAR = [1, 2, 3, 4, 5]
+  STARS = [1, 2, 3, 4, 5]
 end

@@ -7,6 +7,7 @@
   <h4><%= review.name %></h4>
   <p>"<em><%= review.comment %>"</em></p>
   <p><%= review.stars %> stars</p>
+  <p><%= review.created_at.strftime('%b %d, %Y') %></p>
   <hr />
 </ol>
 <% end %>

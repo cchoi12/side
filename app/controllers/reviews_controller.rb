@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_movie, only: %i[index new create]
 
   def index
-    @reviews = @movie.reviews
+    @reviews = @movie.reviews.order(created_at: :desc)
   end
 
   def new
