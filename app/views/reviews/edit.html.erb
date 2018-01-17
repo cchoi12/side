@@ -1,5 +1,5 @@
 <header>
-  <h1>Editing <%= @review.name.capitalize %>'s review for <%= @movie.title %></h1>
+  <h1>Editing <%= @review.name.capitalize %>'s review for <%= @movie.title unless @movie.nil? %></h1>
 </header>
 
 <%= render 'reviews/form' %>

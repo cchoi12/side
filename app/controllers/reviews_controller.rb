@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_movie, only: %i[index new create destroy edit]
+  before_action :set_movie, only: %i[index new create destroy edit update]
   before_action :set_review, only: %i[edit update]
   def index
     @reviews = @movie.reviews.order(created_at: :desc)
@@ -30,8 +30,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if @review.save
-      redirect_to movie_reviews_path, notice: "Update successful"
+    if @review.update(review_params)
+      redirect_to movie_reviews_path(@movie), notice: "Update successful"
     else
       render 'edit'
     end
