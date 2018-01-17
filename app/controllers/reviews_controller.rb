@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_movie, only: %i[index new create destroy edit]
-
+  before_action :set_review, only: %i[edit update]
   def index
     @reviews = @movie.reviews.order(created_at: :desc)
   end
@@ -27,10 +27,21 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = @movie.reviews
+  end
+
+  def update
+    if @review.save
+      redirect_to movie_reviews_path, notice: "Update successful"
+    else
+      render 'edit'
+    end
   end
 
   private
+
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
   def set_movie
     @movie = Movie.find(params[:movie_id])
